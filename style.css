@@ -4,7 +4,7 @@ body {
     background-color: #f0f4f8;
     color: #333;
     margin: 0;
-    padding: 20px;
+    padding: 0; /* Changed padding to 0 for sticky header */
 }
 
 .container {
@@ -15,6 +15,22 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
+
+/* Make container on test page sit below sticky header */
+body:has(#quiz-container) .container {
+    padding-top: 90px; /* Provides space for the sticky HUD */
+}
+/* Homepage container remains normal */
+body:has(#home) .container {
+    padding-top: 20px;
+    margin-top: 20px;
+}
+/* Test bank container remains normal */
+body:has(#quiz-container) .container:not(:has(#hud)) {
+     padding-top: 20px;
+     margin-top: 20px;
+}
+
 
 h1, h2, h3 {
     color: #1a2b4d;
@@ -68,7 +84,7 @@ h1, h2, h3 {
 
 /* Quiz Container (Shared) */
 #quiz-container {
-    padding: 20px;
+    /* Removed padding, as it's on the .container now */
 }
 
 #question-header {
@@ -164,11 +180,34 @@ h1, h2, h3 {
     color: #721c24;
 }
 
-/* HUD & Controls */
+/* === HUD & Controls === */
 #hud {
+    /* This is the new "Sticky Header" style for the timer */
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    align-items: center; /* Vertically center items */
+    
+    position: fixed; /* Stick to the viewport */
+    top: 0;
+    left: 0;
+    right: 0;
+    
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    
+    padding: 15px 20px; /* Add some padding */
+    
+    /* Center it like the .container */
+    max-width: 800px;
+    margin: 0 auto;
+    
+    /* To make it fit inside the container's width */
+    box-sizing: border-box; 
+}
+
+#hud h3 {
+    margin: 0; /* Remove default h3 margins */
 }
 
 #timer {
