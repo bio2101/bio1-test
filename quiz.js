@@ -1,7 +1,7 @@
 // --- DATABASE OF ALL QUESTIONS ---
 // Note: 'answer' is the 0-based index of the correct option.
 const allQuestions = [
-    // Lipids
+    // Lipids (Q81-Q93)
     {
         question: "Lipids are generally ________.",
         options: [
@@ -97,18 +97,8 @@ const allQuestions = [
         ],
         answer: 2
     },
-    {
-        question: "The process of hydrogenation converts ________.",
-        options: [
-            "Saturated fats to unsaturated fats",
-            "Oils into solid fats",
-            "Amino acids into proteins",
-            "Sugars into lipids"
-        ],
-        answer: 1
-    },
 
-    // Proteins (Unit 2.5)
+    // Proteins (Q95-Q110)
     {
         question: "Proteins are composed of subunits called ________.",
         options: ["Fatty acids", "Amino acids", "Sugars", "Nucleotides"],
@@ -160,44 +150,9 @@ const allQuestions = [
         answer: 1
     },
     {
-        question: "Enzymes act as biological ________.",
-        options: ["Catalysts", "Substrates", "Reactants", "Inhibitors"],
-        answer: 0
-    },
-    {
         question: "The specific region of an enzyme that binds the substrate is called the ________.",
         options: ["Active site", "Catalytic site", "Binding groove", "Reactive zone"],
         answer: 0
-    },
-    {
-        question: "Enzymes speed up chemical reactions by ________.",
-        options: [
-            "Increasing activation energy",
-            "Decreasing activation energy",
-            "Consuming reactants",
-            "Producing more heat"
-        ],
-        answer: 1
-    },
-    {
-        question: "Enzyme activity can be affected by ________.",
-        options: [
-            "Temperature and pH",
-            "Only temperature",
-            "Only concentration of water",
-            "None of these"
-        ],
-        answer: 0
-    },
-    {
-        question: "Structural proteins such as collagen are important in ________.",
-        options: [
-            "Hormone regulation",
-            "Body movement",
-            "Providing support and strength",
-            "Energy storage"
-        ],
-        answer: 2
     },
     {
         question: "The element always present in proteins but not in carbohydrates or lipids is ________.",
@@ -210,69 +165,7 @@ const allQuestions = [
         answer: 1
     },
 
-    // Nucleic Acids (Unit 2.6)
-    {
-        question: "The monomers of nucleic acids are called ________.",
-        options: ["Amino acids", "Nucleotides", "Fatty acids", "Monosaccharides"],
-        answer: 1
-    },
-    {
-        question: "The three components of a nucleotide are ________.",
-        options: [
-            "Sugar, phosphate, nitrogen base",
-            "Sugar, lipid, protein",
-            "Phosphate, lipid, base",
-            "Protein, sugar, base"
-        ],
-        answer: 0
-    },
-    {
-        question: "The sugar in DNA is ________.",
-        options: ["Ribose", "Deoxyribose", "Glucose", "Fructose"],
-        answer: 1
-    },
-    {
-        question: "The sugar in RNA is ________.",
-        options: ["Deoxyribose", "Ribose", "Glucose", "Lactose"],
-        answer: 1
-    },
-    {
-        question: "Which of the following bases is found only in DNA?",
-        options: ["Uracil", "Thymine", "Adenine", "Guanine"],
-        answer: 1
-    },
-    {
-        question: "Which base is found only in RNA?",
-        options: ["Thymine", "Cytosine", "Uracil", "Adenine"],
-        answer: 2
-    },
-    {
-        question: "In DNA, adenine pairs with ________.",
-        options: ["Guanine", "Cytosine", "Thymine", "Uracil"],
-        answer: 2
-    },
-    {
-        question: "The two strands of DNA are held together by ________.",
-        options: ["Ionic bonds", "Hydrogen bonds", "Peptide bonds", "Phosphodiester bonds"],
-        answer: 1
-    },
-    {
-        question: "The backbone of DNA consists of alternating ________.",
-        options: [
-            "Bases and amino acids",
-            "Sugars and phosphates",
-            "Bases and lipids",
-            "Sugars and bases"
-        ],
-        answer: 1
-    },
-    {
-        question: "The bond joining nucleotides within one strand of DNA is a ________.",
-        options: ["Peptide bond", "Phosphodiester bond", "Hydrogen bond", "Ionic bond"],
-        answer: 1
-    },
-
-    // Water
+    // Water (Q41-Q60)
     {
         question: "Water can exist naturally in how many physical states?",
         options: ["One", "Two", "Three", "Four"],
@@ -399,7 +292,7 @@ const allQuestions = [
         answer: 0
     },
 
-    // Matter & Macromolecules
+    // Matter & Macromolecules (Q61-Q80)
     {
         question: "Matter is defined as ________.",
         options: [
@@ -481,11 +374,6 @@ const allQuestions = [
         answer: 0
     },
     {
-        question: "Because they can donate electrons, all monosaccharides are ________.",
-        options: ["Non-reducing sugars", "Reducing sugars", "Nonpolar compounds", "Lipids"],
-        answer: 1
-    },
-    {
         question: "The bond joining two monosaccharides to form a disaccharide is a ________.",
         options: ["Peptide bond", "Ester bond", "Glycosidic bond", "Hydrogen bond"],
         answer: 2
@@ -516,7 +404,7 @@ const allQuestions = [
         answer: 1
     },
 
-    // Properties of Life & Classification
+    // Properties of Life & Classification (Q1-Q40)
     {
         question: "Which of the following is not a property of life?",
         options: ["Energy processing", "Reproduction", "Movement", "Regulation"],
@@ -667,8 +555,6 @@ const allQuestions = [
         options: ["Multicellular", "Rigid cell walls", "Heterotrophic", "Eukaryotic"],
         answer: 1
     },
-
-    // Biodiversity
     {
         question: "Biodiversity refers to ________.",
         options: [
@@ -794,9 +680,13 @@ function initTestBank() {
         if (currentBankQuestionIndex < allQuestions.length) {
             loadBankQuestion();
         } else {
-            questionTextEl.innerText = "You have completed the test bank!";
-            optionsContainerEl.innerHTML = "";
-            nextButton.style.display = 'none';
+            // Loop back to the beginning
+            currentBankQuestionIndex = 0;
+            loadBankQuestion();
+            // Or, show completion message:
+            // questionTextEl.innerText = "You have completed the test bank!";
+            // optionsContainerEl.innerHTML = "";
+            // nextButton.style.display = 'none';
         }
     });
 
@@ -909,7 +799,8 @@ function initTest() {
         let formHTML = "";
         testQuestions.forEach((question, questionIndex) => {
             formHTML += `<div class="test-question-block">`;
-            formHTML += `<h3>${questionIndex + 1}. ${question.question}</h3>`; // Add our own numbering (1-40)
+            // This line adds the numbering 1, 2, 3...
+            formHTML += `<h3>${questionIndex + 1}. ${question.question}</h3>`; 
             
             question.options.forEach((option, optionIndex) => {
                 formHTML += `<label class="test-option-label">`;
